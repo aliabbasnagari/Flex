@@ -44,12 +44,14 @@
                     We believe you are not a robot. ❤
                 </div>
                 <div class="h-5 w-100 bg-light rounded-5">
-                    <asp:Button ID="btnSignIn" runat="server" CssClass="btn btn-primary btn-sigin rounded-5" Text="Sign In" OnClick="signInButton_Click" />
-                    <asp:Button ID="btnGotoStudent" runat="server" CssClass="btn btn-light w-50 btn-sigin rounded-5" Text="Are you Student?" OnClick="signInButton_Click" />
+                    <asp:LinkButton ID="btnSignIn" runat="server" CssClass="btn btn-primary btn-sigin rounded-5" OnClick="signInButton_Click">
+                            <i class="fa fa-sign-in px-2"></i>Sign In
+                    </asp:LinkButton>
+                    <a class="btn btn-light w-50 btn-sigin rounded-5" href="/pages/faculty/login.aspx">Are you Faculty?</a>
                 </div>
                 <!-- <i class="fal fa-sign-in" style="margin-right: 10px;"></i> -->
                 <div class="position-absolute bottom-0 start-0">
-                    <a class="nav-link m-5" href="/pages/faculty/login.aspx">Goto Faculty Panel</a>
+                    <a class="nav-link m-5" href="/pages/students/login.aspx">Goto Student Panel</a>
                 </div>
             </form>
         </div>

@@ -32,9 +32,9 @@
                 </ul>
 
                 <ul class="sidebar-ul mt-auto">
-                    <li>
-                        <asp:Button ID="btnSignOut" runat="server" CssClass="btn btn-danger btn-lg btn-action rounded-5" Text="Signout" OnClick="gotoSignOut" />
-                    </li>
+                    <asp:LinkButton ID="btnSignOut" runat="server" CssClass="btn btn-danger btn-lg btn-action rounded-5" OnClick="btnSignOut_Click">
+                            <i class="fa fa-sign-out px-2"></i>Sign Out
+                    </asp:LinkButton>
                 </ul>
                 <!-- to -->
             </div>

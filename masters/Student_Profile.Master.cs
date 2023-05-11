@@ -34,15 +34,15 @@ namespace Flex.masters
             }
             else
             {
-                Response.Redirect("~/pages/Login.aspx"); // Redirect to the home page
+                Response.Redirect("~/pages/students/login.aspx"); // Redirect to the home page
             }
 
         }
 
-        protected void gotoSignOut(object sender, EventArgs e)
+        protected void btnSignOut_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            Response.Redirect("~/pages/login.aspx"); // Redirect to the home page
+            Response.Redirect("~/pages/students/login.aspx"); // Redirect to the home page
         }
     }
 }

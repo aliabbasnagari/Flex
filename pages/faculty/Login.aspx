@@ -17,14 +17,22 @@
                 <h3>Sign In</h3>
             </div>
             <form class="login-form" id="loginForm" runat="server">
-                <div class="mb-3">
-                    <label for="userRoll">Roll No.</label>
+                <div class="mb-1">
+                    <label for="userEmail">Email</label>
                     <div class="input-group">
                         <span class="input-group-text">
                             <i class="fal fa-user"></i>
                         </span>
-                        <asp:TextBox ID="userRoll" runat="server" CssClass="form-control" placeholder="Roll Number i.e. (21I-xxxx)" aria-label="Roll number"></asp:TextBox>
+                        <asp:TextBox ID="userEmail" runat="server" CssClass="form-control" placeholder="Email i.e. abc@nu.edu.pk" aria-label="Email"></asp:TextBox>
                     </div>
+                    <asp:RegularExpressionValidator
+                        ID="emailVaildator"
+                        CssClass="text-warning"
+                        ControlToValidate="userEmail"
+                        ValidationExpression="^\w+@nu\.edu\.pk$"
+                        ErrorMessage="Invalid Email Address."
+                        runat="server">
+                    </asp:RegularExpressionValidator>
                 </div>
                 <div class="mb-3">
                     <label for="userPassword">Password</label>
@@ -44,12 +52,12 @@
                     We believe you are not a robot. ❤
                 </div>
                 <div class="h-5 w-100 bg-light rounded-5">
-                    <asp:Button ID="btnSignIn" runat="server" CssClass="btn btn-primary btn-sigin rounded-5" Text="Sign In" OnClick="signInButton_Click" />
-                    <asp:Button ID="btnGotoStudent" runat="server" CssClass="btn btn-light w-50 btn-sigin rounded-5" Text="Are you Student?" OnClick="signInButton_Click" />
+                    <asp:Button ID="btnSignIn" runat="server" CssClass="btn btn-primary btn-sigin rounded-5" Text="Sign In" OnClick="btnSignIn_Click" />
+                    <asp:Button ID="btnGotoStudent" runat="server" CssClass="btn btn-light w-50 btn-sigin rounded-5" Text="Are you Student?" OnClick="btnGotoStudent_Click" />
                 </div>
                 <!-- <i class="fal fa-sign-in" style="margin-right: 10px;"></i> -->
                 <div class="position-absolute bottom-0 start-0">
-                    <a class="nav-link p-3" href="/pages/academics/login.aspx">Goto Academics Panel</a>
+                    <a class="nav-link m-5" href="/pages/academics/login.aspx">Goto Academics Panel</a>
                 </div>
             </form>
         </div>

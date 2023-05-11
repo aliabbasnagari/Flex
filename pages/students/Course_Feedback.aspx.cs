@@ -20,8 +20,8 @@ namespace Flex.pages.students
             if (!IsPostBack)
             {
                 DataTable data = loadCourses();
-                attendanceGrid.DataSource = data;
-                attendanceGrid.DataBind();
+                //attendanceGrid.DataSource = data;
+                //attendanceGrid.DataBind();
             }
         }
 
@@ -47,8 +47,8 @@ namespace Flex.pages.students
             clickedButton.CssClass = "btn btn-secondary rounded-5";
 
             DataTable data = loadCourses();
-            attendanceGrid.DataSource = data;
-            attendanceGrid.DataBind();
+            //attendanceGrid.DataSource = data;
+            //attendanceGrid.DataBind();
 
             foreach (Button button in linkbuttons.Controls.OfType<Button>().Where(b => b != clickedButton))
             {

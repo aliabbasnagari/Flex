@@ -13,5 +13,15 @@ namespace Flex.pages.faculty
         {
 
         }
+
+        protected void btnGotoStudent_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/pages/students/login.aspx");
+        }
+
+        protected void btnSignIn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

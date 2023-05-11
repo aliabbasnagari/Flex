@@ -15,13 +15,13 @@ namespace Flex.masters
     {
 
         /// <summary>
-        /// studentHeadPlaceHolder control.
+        /// academicsHeadPlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder studentHeadPlaceHolder;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder academicsHeadPlaceHolder;
 
         /// <summary>
         /// sideNavForm control.
@@ -51,13 +51,13 @@ namespace Flex.masters
         protected global::System.Web.UI.WebControls.Label lbDegRoll;
 
         /// <summary>
-        /// studentOptions control.
+        /// academicsOptions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl studentOptions;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl academicsOptions;
 
         /// <summary>
         /// btnSignOut control.
@@ -66,24 +66,24 @@ namespace Flex.masters
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSignOut;
+        protected global::System.Web.UI.WebControls.LinkButton btnSignOut;
 
         /// <summary>
-        /// studentContentPlaceHolder control.
+        /// academicsContentPlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder studentContentPlaceHolder;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder academicsContentPlaceHolder;
 
         /// <summary>
-        /// studentScriptPlaceHolder control.
+        /// academicsScriptPlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder studentScriptPlaceHolder;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder academicsScriptPlaceHolder;
     }
 }

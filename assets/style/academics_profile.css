@@ -1,0 +1,50 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background: #f2f3f8;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'montserrat', sans-serif;
+}
+
+.sidebar-ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+    .sidebar-ul li {
+        margin: 10px 10px;
+    }
+
+.prof-img {
+    margin: 10px;
+    height: 6rem;
+    width: 6rem;
+}
+
+.btn-action {
+    width: 13rem;
+    font-size: 16px;
+}
+
+.btn-chat {
+    height: 3rem;
+    width: 3rem;
+    font-size: 20px;
+}
+
+.profile-container {
+    margin-bottom: 2vh;
+}
+
+
+@font-face {
+    font-family: 'montserrat';
+    src: url('../fonts/montserrat.ttf');
+}

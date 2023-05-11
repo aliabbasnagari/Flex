@@ -1,5 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masters/Admin_Profile.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="Flex.pages.academics.Profile" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="studentHeadPlaceHolder" runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masters/Academics_Profile.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="Flex.pages.academics.Profile" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="academicsHeadPlaceHolder" runat="server">
     <style>
         .table-custom {
             width: 30%;
@@ -11,7 +11,7 @@
         }
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="studentContentPlaceHolder" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="academicsContentPlaceHolder" runat="server">
     <ul class="mx-3 breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Faculty</li>
         <li class="breadcrumb-item active" aria-current="page">Profile</li>
@@ -101,7 +101,7 @@
     <a href="#" class="btn btn-secondary btn-lg btn-chat rounded-5 position-absolute bottom-0 end-0 m-3"><i class="fas fa-comment"></i>
     </a>
 </asp:Content>
-<asp:Content runat="server" ID="Content3" ContentPlaceHolderID="studentScriptPlaceHolder">
+<asp:Content runat="server" ID="Content3" ContentPlaceHolderID="academicsScriptPlaceHolder">
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var homeLink = document.getElementById('btnProfile');

@@ -24,13 +24,22 @@ namespace Flex.pages.faculty
         protected global::System.Web.UI.HtmlControls.HtmlForm loginForm;
 
         /// <summary>
-        /// userRoll control.
+        /// userEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox userRoll;
+        protected global::System.Web.UI.WebControls.TextBox userEmail;
+
+        /// <summary>
+        /// emailVaildator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator emailVaildator;
 
         /// <summary>
         /// userPassword control.
