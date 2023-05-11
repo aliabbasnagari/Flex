@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Student_Profile.master.cs" Inherits="Flex.masters.Student_Profile" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Flex | Student</title>
+    <link rel="stylesheet" type="text/css" href="~/assets/fontawesome/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/style/student_profile.css" />
+    <link rel="shortcut icon" href="~/assets/img/favicon.ico" />
+    <asp:ContentPlaceHolder ID="studentHeadPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form class="d-flex w-100 h-100" id="sideNavForm" runat="server">
+        <div class="d-flex flex-column h-100 w-18">
+            <div class="d-flex flex-column m-3 p-3 text-center rounded-5 shadow h-100" style="background-color: aliceblue;">
+                <!-- Content goes here -->
+                <div class="profile-container d-flex flex-column align-items-center">
+                    <img src="/assets/img/profile-pic.png" class="prof-img rounded-circle" alt="" />
+                    <asp:Label ID="lbName" runat="server" Text="Label" CssClass="h2"></asp:Label>
+                    <asp:Label ID="lbDegRoll" runat="server" Text="Label" CssClass="h5"></asp:Label>
+                </div>
+                <ul id="studentOptions" class="sidebar-ul" runat="server">
+                    <li><a id="btnProfile" href="/pages/students/profile.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Home</a></li>
+                    <li><a id="btnAttend" href="/pages/students/attendance.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Attendance</a></li>
+                    <li><a id="btnAReport" href="/pages/students/academic_report.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Academic Report</a></li>
+                    <li><a id="btnCReg" href="/pages/students/cregistration.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Course Registration</a></li>
+                    <li><a id="btnTrans" href="/pages/students/transcript.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Transcript</a></li>
+                    <li><a id="btnCFeedback" href="/pages/students/course_feedback.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Course Feedback</a></li>
+                    <li><a id="btnDetails" href="/pages/students/details.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Details</a></li>
+                </ul>
+
+                <ul class="sidebar-ul mt-auto">
+                    <li>
+                        <asp:Button ID="btnSignOut" runat="server" CssClass="btn btn-danger btn-lg btn-action rounded-5" Text="Signout" OnClick="gotoSignOut" />
+                    </li>
+                </ul>
+                <!-- to -->
+            </div>
+        </div>
+        <div class="d-flex flex-grow-1" style="height: 100vh;">
+            <div class="d-flex flex-column m-3 p-3 text-center rounded-5 shadow position-relative" style="background-color: white; flex-grow: 1;">
+                <!-- Content goes here -->
+                <div class="overflow-auto">
+                    <asp:ContentPlaceHolder ID="studentContentPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <!-- to -->
+            </div>
+        </div>
+    </form>
+
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="studentScriptPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+</html>

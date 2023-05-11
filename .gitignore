@@ -1,0 +1,7 @@
+/assets/bootstrap
+/assets/fontawesome
+/bin
+/obj
+/Properties
+*.csproj
+*.user
