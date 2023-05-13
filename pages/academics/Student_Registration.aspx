@@ -44,10 +44,17 @@
                             <input type="text" class="form-control" id="name" required />
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" required>
+                    <div class="mb-3 d-flex w-100">
+                        <div class="flex-grow-1 mx-2">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" required />
+                        </div>
+                        <div class="flex-grow-1 mx-2">
+                            <label for="email" class="form-label">NU Email address</label>
+                            <input type="email" class="form-control" id="email" required />
+                        </div>
                     </div>
+
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" required>
@@ -102,7 +109,22 @@
                             </select>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg rounded-5" style="width: 20rem;">Enroll</button>
+                    <div class="mb-3 d-flex w-100 align-items-end">
+                        <div class="flex-grow-1 mx-2">
+                            <label for="email" class="form-label">Roll No.</label>
+                            <input type="email" class="form-control" id="email" required />
+                        </div>
+                        <div class="flex-grow-1 mx-2">
+                            <label for="email" class="form-label">NU Email address</label>
+                            <input type="email" class="form-control" id="email" required />
+                        </div>
+                        <div class="mx-2">
+                            <button type="button" class="btn btn-secondary" style="margin-left: 1rem;">Generate</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg rounded-5" style="width: 20rem;">
+                        Enroll<i class="fa fa-check mx-3"></i>
+                    </button>
                 </form>
             </div>
         </div>

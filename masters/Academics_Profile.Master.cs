@@ -13,7 +13,7 @@ namespace Flex.masters
     {
         SqlConnection conn = new SqlConnection("Data Source=anonymous\\SQLEXPRESS;Initial Catalog=FlexDB;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {/*
             string roll_no = (string)Session["roll_no"];
             if (!string.IsNullOrEmpty(roll_no))
             {
@@ -36,7 +36,7 @@ namespace Flex.masters
             {
                 Response.Redirect("~/pages/academics/login.aspx"); // Redirect to the home page
             }
-
+                */
         }
 
         protected void btnSignOut_Click(object sender, EventArgs e)

@@ -18,23 +18,7 @@ namespace Flex.pages.students
             string roll_no = (string)Session["roll_no"];
             if (!string.IsNullOrEmpty(roll_no))
             {
-                conn.Open();
-                SqlCommand cm;
-                string query = "select * from students where rollno = '" + EncryptionUtility.Decrypt(roll_no) + "';";
-                cm = new SqlCommand(query, conn);
-                SqlDataReader res = cm.ExecuteReader();
-                while (res.Read())
-                {
-                    lbGender.Text = res["gender"].ToString();
-                    lbDob.Text = ((DateTime)res["dob"]).ToString("dd/MM/yyyy");
-                    lbCnic.Text = res["cnic"].ToString();
-                    lbEmail.Text = res["email"].ToString();
-                    lbMobNo.Text = res["phonenumber"].ToString();
-                    lbNation.Text = res["nationality"].ToString();
-                    lbBloodGroup.Text = "O";
-                }
-                res.Close();
-                conn.Close();
+                
             }
             else
             {
