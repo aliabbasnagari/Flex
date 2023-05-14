@@ -10,99 +10,115 @@
     <div class="container mt-2">
         <div class="card">
             <div class="card-header">
-                <h4>Faculty Registration Form</h4>
+                <h4>Student Registration Form</h4>
             </div>
             <div class="card-body text-start">
                 <form>
                     <div class="mb-3 d-flex w-100">
                         <div class="flex-grow-1 mx-2">
-                            <label for="name" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="firstname" required />
+                            <label for="fName" class="form-label">First Name</label>
+                            <asp:TextBox runat="server" ID="fName" CssClass="form-control" Required="true"></asp:TextBox>
                         </div>
                         <div class="flex-grow-1 mx-2">
-                            <label for="name" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="name" required />
-                        </div>
-                    </div>
-                    <div class="mb-3 d-flex w-100">
-                        <div class="flex-grow-1 mx-2">
-                            <label for="name" class="form-label">Phone</label>
-                            <input type="text" class="form-control" id="firstname" required />
-                        </div>
-                        <div class="flex-grow-1 mx-2">
-                            <label for="name" class="form-label">Cnic</label>
-                            <input type="text" class="form-control" id="name" required />
+                            <label for="lName" class="form-label">Last Name</label>
+                            <asp:TextBox runat="server" ID="lName" CssClass="form-control" Required="true"></asp:TextBox>
                         </div>
                     </div>
                     <div class="mb-3 d-flex w-100">
                         <div class="flex-grow-1 mx-2">
-                            <label for="name" class="form-label">Father Name</label>
-                            <input type="text" class="form-control" id="firstname" required />
+                            <label for="phNumber" class="form-label">Phone</label>
+                            <asp:TextBox runat="server" ID="phNumber" CssClass="form-control" Required="true"></asp:TextBox>
                         </div>
                         <div class="flex-grow-1 mx-2">
-                            <label for="name" class="form-label">Guardian Name</label>
-                            <input type="text" class="form-control" id="name" required />
+                            <label for="userCnic" class="form-label">Cnic</label>
+                            <asp:TextBox runat="server" ID="userCnic" CssClass="form-control" Required="true"></asp:TextBox>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" required>
                     </div>
                     <div class="mb-3 d-flex w-100">
                         <div class="flex-grow-1 mx-2">
-                            <label for="dob" class="form-label">Date of Birth</label>
-                            <input type="date" class="form-control" id="dob" required>
+                            <label for="ftName" class="form-label">Father Name</label>
+                            <asp:TextBox runat="server" ID="ftName" CssClass="form-control" Required="true"></asp:TextBox>
                         </div>
                         <div class="flex-grow-1 mx-2">
-                            <label for="gender" class="form-label">Gender</label>
-                            <select class="form-select" id="gender" required>
-                                <option selected disabled value="">Choose...</option>
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Other</option>
-                            </select>
+                            <label for="guName" class="form-label">Guardian Name</label>
+                            <asp:TextBox runat="server" ID="guName" CssClass="form-control" Required="true"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="mb-3 d-flex w-100">
+                        <div class="flex-grow-1 mx-2">
+                            <label for="uEmail" class="form-label">Email Address</label>
+                            <asp:TextBox runat="server" ID="uEmail" CssClass="form-control" TextMode="Email" Required="true"></asp:TextBox>
+                        </div>
+                        <div class="flex-grow-1 mx-2">
+                            <label for="uDob" class="form-label">Date of Birth</label>
+                            <asp:TextBox runat="server" ID="uDob" CssClass="form-control" TextMode="Date" Required="true"></asp:TextBox>
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="address" class="form-label">Address</label>
-                        <textarea class="form-control" id="address" rows="1" required></textarea>
+                    <div class="mb-3 d-flex w-100">
+                        <div class="flex-grow-1 mx-2">
+                            <label for="uNation" class="form-label">Nationality</label>
+                            <asp:TextBox runat="server" ID="uNation" CssClass="form-control" Required="true"></asp:TextBox>
+                        </div>
+                        <div class="flex-grow-1 mx-2">
+                            <label for="ddGender" class="form-label">Gender</label>
+                            <asp:DropDownList ID="ddGender" runat="server" CssClass="form-select" required="true">
+                                <asp:ListItem Text="Choose..." Value="" Disabled="true" Selected="true"></asp:ListItem>
+                                <asp:ListItem Text="Male" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Female" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="Others" Value="3"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 d-flex w-100">
+                        <div class="flex-grow-1 mx-2">
+                            <label for="uAddress" class="form-label">Address</label>
+                            <asp:TextBox ID="uAddress" runat="server" CssClass="form-control" Rows="1" TextMode="MultiLine" required="true"></asp:TextBox>
+                        </div>
+                        <div class="flex-grow-2 mx-2">
+                            <label for="uCity" class="form-label">City</label>
+                            <asp:TextBox ID="uCity" runat="server" CssClass="form-control" required="true"></asp:TextBox>
+                        </div>
+                        <div class="flex-grow-2 mx-2">
+                            <label for="uCountry" class="form-label">Country</label>
+                            <asp:TextBox ID="uCountry" runat="server" CssClass="form-control" required="true"></asp:TextBox>
+                        </div>
                     </div>
                     <div class="mb-3 d-flex w-100">
                         <div class="flex-grow-1 mx-2">
-                            <label for="department" class="form-label">Department</label>
-                            <select class="form-select" id="department" required>
-                                <option selected disabled value="">Choose...</option>
-                                <option>Computer Sciences</option>
-                                <option>Data Sciences</option>
-                                <option>Artificial Intelligence</option>
-                                <option>Software Engineering</option>
-                                <option>Cyber Security</option>
-                                <option>Electrical Engineering</option>
-                                <option>Business Administration</option>
-                                <!-- Add more departments as needed -->
-                            </select>
+                            <label for="ddCampus" class="form-label">Campus</label>
+                            <asp:DropDownList ID="ddCampus" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddCampus_Selected" AutoPostBack="true" required="true">
+                                <asp:ListItem Text="Choose..." Value="" Disabled="true" Selected="true"></asp:ListItem>
+                            </asp:DropDownList>
+
                         </div>
                         <div class="flex-grow-1 mx-2">
-                            <label for="department" class="form-label">Available Section</label>
-                            <select class="form-select" id="department" required>
-                                <option selected disabled value="">Choose...</option>
-                                <option>A</option>
-                                <option>B</option>
-                                <option>C</option>
-                                <option>D</option>
-                                <option>E</option>
-                                <option>F</option>
-                                <option>G</option>
-                                <!-- Add more departments as needed -->
-                            </select>
+                            <label for="ddCourse" class="form-label">Course</label>
+                            <asp:DropDownList ID="ddCourse" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddCourse_Selected" AutoPostBack="true" required="true">
+                                <asp:ListItem Text="Choose..." Value="" Disabled="true" Selected="true"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="flex-grow-1 mx-2">
+                            <label for="ddSections" class="form-label">Sections</label>
+                            <asp:DropDownList ID="ddSections" runat="server" CssClass="form-select" required="true">
+                                <asp:ListItem Text="Choose..." Value="" Disabled="true" Selected="true"></asp:ListItem>
+                            </asp:DropDownList>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg rounded-5" style="width: 20rem;">Enroll</button>
+
+                    <div class="mb-3 d-flex w-100 align-items-end">
+                        <div class="flex-grow-1 mx-2">
+                            <label for="nuEmail" class="form-label">NU Email address</label>
+                            <asp:TextBox runat="server" ID="nuEmail" CssClass="form-control" TextMode="Email" Text="AutoGenerate@nu.edu.pk" Required="true"></asp:TextBox>
+                        </div>
+                        <div class="mx-2">
+                            <asp:Button ID="btnGenerate" runat="server" CssClass="btn btn-secondary" OnClick="btnGenerate_Click" CausesValidation="false" Text="Generate" />
+                        </div>
+                    </div>
+                    <asp:LinkButton ID="btnEnroll" runat="server" CssClass="btn btn-success btn-lg rounded-5" OnClick="btnEnroll_Click">
+                        <i class="fa fa-check mx-5"></i>Enroll
+                    </asp:LinkButton>
                 </form>
             </div>
         </div>

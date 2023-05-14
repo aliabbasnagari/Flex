@@ -21,7 +21,7 @@ namespace Flex.pages.academics
 
         protected void signInButton_Click(object sender, EventArgs e)
         {
-            Session["roll_no"] = EncryptionUtility.Encrypt("21I-2503"); // Save the username in session
+            Session["nuemail"] = "johndoe@example.com"; // Save the username in session
             Response.Redirect("~/pages/academics/profile.aspx"); // Redirect to the home page
         }
 
