@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -23,7 +24,6 @@ namespace Flex.pages.academics
                     "join users ur on ur.UserID = ac.UserID " +
                     "join userinfo ui on ui.InfoID = ac.userid " +
                     "where ur.nuemail = @numail";
-                Helper.alert(query, this);
                 cm = new SqlCommand(query, conn);
                 cm.Parameters.AddWithValue("@numail", numail);
                 SqlDataReader res = cm.ExecuteReader();
@@ -35,6 +35,9 @@ namespace Flex.pages.academics
                     lbEmail.Text = res["personalemail"].ToString();
                     lbMobNo.Text = res["contactno"].ToString();
                     lbNation.Text = res["nationality"].ToString();
+                    lbAddress.Text = res["address"].ToString();
+                    lbCity.Text = res["city"].ToString();
+                    lbCountry.Text = res["country"].ToString();
                     lbBloodGroup.Text = "O";
                 }
                 res.Close();

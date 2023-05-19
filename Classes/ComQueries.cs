@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -143,6 +144,30 @@ namespace Flex.Classes
             return users;
         }
 
+        public static int MaxAttendanceID()
+        {
+            int users = -1;
+            conn.Open();
+            string query = "SELECT max(AttendanceID) FROM Attendance;";
+            SqlCommand command = new SqlCommand(query, conn);
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                if (reader.Read())
+                {
+                    if (int.TryParse(reader[0].ToString(), out users))
+                    {
+                        reader.Close();
+                        conn.Close();
+                        return users;
+                    }
+                }
+            }
+            reader.Close();
+            conn.Close();
+            return users;
+        }
+
         public static bool NuMailExists(string email)
         {
             conn.Open();
@@ -159,6 +184,63 @@ namespace Flex.Classes
             reader.Close();
             conn.Close();
             return false;
+        }
+
+        public static string getLatestSemesterID(string rollno)
+        {
+            string semester = "";
+            conn.Open();
+            string query = "SELECT top 1 ss.SemesterID from semesters ss " +
+                "join studentsemester sts on sts.semesterid = ss.semesterid " +
+                "join students st on st.studentid = sts.studentid " +
+                "where st.rollno = @roll" +
+                "Order by ss.SemesterID desc";
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@roll", rollno);
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                if (reader.Read())
+                {
+                    semester = reader["SemesterID"].ToString();
+                }
+                reader.Close();
+                conn.Close();
+                return semester;
+            }
+            reader.Close();
+            conn.Close();
+            return semester;
+        }
+
+        public static bool AttendanceExists(string sec, string course, string date)
+        {
+            conn.Open();
+            string query = "SELECT Att.AttendanceID from students st " +
+                "join users usr on usr.userid = st.userid " +
+                "join TakenBy tb on tb.userid = st.userid " +
+                "JOIN Courses ccs on ccs.courseid = tb.courseid " +
+                "join UserSections us on us.userid = st.userid " +
+                "join Sections sc on sc.sectionid = us.sectionid " +
+                "join Attendance att on att.studentid = st.studentid and att.courseid = tb.courseid " +
+                "WHERE SC.SectionID = @secid AND TB.CourseID = @cid and Att.Attendancedate = @date;";
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@secid", sec);
+            command.Parameters.AddWithValue("@date", date);
+            command.Parameters.AddWithValue("@cid", course);
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                reader.Close();
+                conn.Close();
+                return true;
+            }
+            else
+            {
+                reader.Close();
+                conn.Close();
+                return false;
+            }
         }
     }
 }

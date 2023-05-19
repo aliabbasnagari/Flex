@@ -39,10 +39,6 @@
                 </button>
                 <div class="collapse d-flex" id="navbarNavAltMarkup">
                     <div runat="server" id="linkbuttons" class="navbar-nav">
-                        <asp:Button ID="Button1" runat="server" CssClass="btn btn-secondary rounded-5" OnClick="fetchAttendance" Text="MT-1001" />
-                        <asp:Button ID="Button2" runat="server" CssClass="btn btn-link nav-link" OnClick="fetchAttendance" Text="CS-1001" />
-                        <asp:Button ID="Button3" runat="server" CssClass="btn btn-link nav-link" OnClick="fetchAttendance" Text="CL-1002" />
-                        <asp:Button ID="Button4" runat="server" CssClass="btn btn-link nav-link" OnClick="fetchAttendance" Text="EE-1004" />
                     </div>
                 </div>
             </div>

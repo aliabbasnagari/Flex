@@ -21,15 +21,20 @@ namespace Flex.pages.students
 
         protected void signInButton_Click(object sender, EventArgs e)
         {
-            Session["roll_no"] = EncryptionUtility.Encrypt("21I-6512"); // Save the username in session
-            Response.Redirect("~/pages/students/profile.aspx"); // Redirect to the home page
+            if (loginAuth(userRoll.Text, userPassword.Text))
+            {
+                Session["roll_no"] = userRoll.Text; // Save the username in session
+                Response.Redirect("~/pages/students/profile.aspx"); // Redirect to the home page
+            }
         }
 
         protected bool loginAuth(string rollnum, string password)
         {
             conn.Open();
             SqlCommand cm;
-            string query = "select * from users where roll_no = @Rollnum and password = @Password";
+            string query = "select * from Students st " +
+                "join Users usr on usr.userid = st.userid " +
+                "where st.rollno = @Rollnum and usr.password = @Password";
             cm = new SqlCommand(query, conn);
             cm.Parameters.AddWithValue("@Rollnum", rollnum);
             cm.Parameters.AddWithValue("@Password", password);
@@ -42,6 +47,10 @@ namespace Flex.pages.students
             }
             else
             {
+                if (res.Read())
+                {
+                    Session["s_uid"] = res["UserID"].ToString();
+                }
                 cm.Dispose();
                 conn.Close();
                 return true;

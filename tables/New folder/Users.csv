@@ -1,0 +1,43 @@
+UserID,FirstName,LastName,Nuemail,Password,CampusID
+1,Raza,Ahmed,i211001@nu.edu.pk,Pass1,1
+2,Mohsin,Naqvi,i211002@nu.edu.pk,Pass2,1
+3,Salar,Murtaza,i211003@nu.edu.pk,Pass3,1
+4,Sarah,Wasim,i211004@nu.edu.pk,Pass4,1
+5,Ahmed,Ali,i211005@nu.edu.pk,Pass5,1
+6,Fatima,Ali,i211006@nu.edu.pk,Pass6,1
+7,Muhammad,Ibrahim,i211007@nu.edu.pk,Pass7,1
+8,Sana ,Khan,i211008@nu.edu.pk,Pass8,1
+9,Ali,Hussain,i211009@nu.edu.pk,Pass9,1
+10,Nimra,Ahmed,i211010@nu.edu.pk,Pass10,1
+11,Haris,Umer,i211011@nu.edu.pk,Pass11,1
+12,Munir,Abbas,i211012@nu.edu.pk,Pass12,1
+13,Kamran,Hayat,i211013@nu.edu.pk,Pass13,1
+14,Muhammad,Ahsan,i211014@nu.edu.pk,Pass14,1
+15,Sultan,Malik,i211015@nu.edu.pk,Pass15,1
+16,Jaffar,Ali,i211016@nu.edu.pk,Pass16,1
+17,Saleem,Sarwar,i211017@nu.edu.pk,Pass17,1
+18,Kulsum,Bano,i211018@nu.edu.pk,Pass18,1
+19,Ayesha ,Malik,i211019@nu.edu.pk,Pass19,1
+20,Fahad ,Khan,i211020@nu.edu.pk,Pass20,1
+21,Sana ,Ahmed,sana .ahmed@nu.edu.pk,Pass21,1
+22,Hassan ,Ali,hassan .ali@nu.edu.pk,Pass22,1
+23,Fatima ,Shah,fatima .shah@nu.edu.pk,Pass23,1
+24,Usman ,Taqi,usman .taqi@nu.edu.pk,Pass24,1
+25,Sara ,Hassan,sara .hassan@nu.edu.pk,Pass25,1
+26,Ahmed ,Raza,ahmed .raza@nu.edu.pk,Pass26,1
+27,Zainab ,Khan,zainab .khan@nu.edu.pk,Pass27,1
+28,Bilal ,Ahmed,bilal .ahmed@nu.edu.pk,Pass28,1
+29,Maria,Iqbal,maria.iqbal@nu.edu.pk,Pass29,1
+30,Imran ,Shareef,imran .shareef@nu.edu.pk,Pass30,1
+31,Sadia ,Nouman,sadia .nouman@nu.edu.pk,Pass31,2
+32,Shahid,Malik,shahid.malik@nu.edu.pk,Pass32,2
+33,Nawaz,Khan,nawaz.khan@nu.edu.pk,Pass33,2
+34,Nadeem ,Hussain,nadeem .hussain@nu.edu.pk,Pass34,2
+35,Zara,Mahmood,zara.mahmood@nu.edu.pk,Pass35,2
+36,Amir ,Abbas,i211021@nu.edu.pk,Pass36,2
+37,Abbas,Ali,i211022@nu.edu.pk,Pass37,2
+38,Hamza ,Ahmed,i211023@nu.edu.pk,Pass38,2
+39,Hina,Batool,i211024@nu.edu.pk,Pass39,2
+40,Farah,Khan,i211025@nu.edu.pk,Pass40,2
+41,Majeed,Ullah,majeed.ullah@nu.edu.pk,Pass41,1
+42,Sanam,Jamal,sanam.jamal@nu.edu.pk,Pass42,2

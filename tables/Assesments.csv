@@ -1,0 +1,14 @@
+AssesmentID,AssesmentNo,CourseID,StudentID,AssessmentType,TotalMarks,Marks
+1,1,3,1,Quiz,50,45
+2,2,3,1,Quiz,50,46
+3,1,3,1,Assignment,50,42
+4,2,3,1,Assignment,50,50
+5,1,3,1,SessionalExam,50,49
+6,2,3,1,SessionalExam,50,31
+7,1,3,1,Project,50,2
+8,1,3,1,FinaxExam,50,7
+9,1,4,1,Quiz,60,30
+10,1,4,1,Assignment,60,60
+11,1,4,1,SessionalExam,60,60
+12,2,4,1,SessionalExam,60,59
+13,1,4,1,Project,60,43

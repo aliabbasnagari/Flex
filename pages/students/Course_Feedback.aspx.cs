@@ -19,41 +19,42 @@ namespace Flex.pages.students
             roll_no = EncryptionUtility.Decrypt((string)Session["roll_no"]);
             if (!IsPostBack)
             {
-                DataTable data = loadCourses();
-                //attendanceGrid.DataSource = data;
-                //attendanceGrid.DataBind();
+                addCourseButtons(roll_no);
             }
         }
 
-        DataTable loadCourses()
+        protected void addCourseButtons(string roll_no)
         {
             conn.Open();
-            string query = "SELECT * from courses";
+            string query = "SELECT cc.CourseID, cc.CourseCode from courses cc " +
+                "join TakenBy tb on tb.CourseID = cc.CourseID " +
+                "join Students st on tb.UserID = st.UserID " +
+                "where st.RollNo = @roll";
             SqlCommand command = new SqlCommand(query, conn);
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
-            return dt;
+            command.Parameters.AddWithValue("@roll", roll_no);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                string courseCode = reader["coursecode"].ToString();
+                string courseId = reader["courseid"].ToString();
+                Button button = new Button();
+                button.ID = courseId;
+                button.Text = courseCode;
+                button.CssClass = "btn btn-link nav-link";
+                button.Click += new EventHandler(updateButton);
+                linkbuttons.Controls.Add(button);
+            }
+            reader.Close();
+            conn.Close();
         }
 
-        protected void profileButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void fetchAttendance(object sender, EventArgs e)
+        protected void updateButton(object sender, EventArgs e)
         {
             Button clickedButton = (Button)sender;
             clickedButton.CssClass = "btn btn-secondary rounded-5";
 
-            DataTable data = loadCourses();
-            //attendanceGrid.DataSource = data;
-            //attendanceGrid.DataBind();
-
             foreach (Button button in linkbuttons.Controls.OfType<Button>().Where(b => b != clickedButton))
-            {
                 button.CssClass = "btn btn-link nav-link";
-            }
         }
     }
 }

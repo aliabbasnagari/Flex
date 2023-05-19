@@ -16,95 +16,84 @@ namespace Flex.pages.students
         string roll_no;
         protected void Page_Load(object sender, EventArgs e)
         {
-            roll_no = EncryptionUtility.Decrypt((string)Session["roll_no"]);
-            if (!IsPostBack && !string.IsNullOrEmpty(roll_no))
-                updateAttendance(roll_no, "MT-1001");
+            roll_no = (string)Session["roll_no"];
             addCourseButtons(roll_no);
-
         }
 
-        DataTable loadAttendance(string roll_no, string course)
-        {
-            if (!string.IsNullOrEmpty(roll_no) && !string.IsNullOrEmpty(course))
-            {
-                conn.Open();
-                string query = "SELECT lecture_no as 'Lecture No', CONVERT(varchar(10), date, 101) as 'Date', duration as 'Duration', presence as 'Presence' from attendance WHERE course_id = @courseId AND rollno = @rollNo";
-                SqlCommand command = new SqlCommand(query, conn);
-                command.Parameters.AddWithValue("@courseId", course);
-                command.Parameters.AddWithValue("@rollNo", roll_no);
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                conn.Close();
-                return dt;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        protected void profileButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected float CalculatePresencePercentage(DataTable dt)
-        {
-            int totalClasses = dt.Rows.Count;
-            int totalLectures = 0;
-            int totalAbsent = 0;
-
-            foreach (DataRow row in dt.Rows)
-            {
-                if (row["Presence"].ToString() == "L")
-                    totalLectures++;
-                else if (row["Presence"].ToString() == "A")
-                    totalAbsent++;
-            }
-
-            float totalHours = totalClasses * 2;
-            float totalPresent = (totalClasses - totalLectures) * 2;
-            float percentage = (totalPresent / totalHours) * 100;
-            return percentage;
-        }
-
-        protected void fetchAttendance(object sender, EventArgs e)
-        {
-            Button clickedButton = (Button)sender;
-            clickedButton.CssClass = "btn btn-secondary rounded-5";
-
-            updateAttendance(roll_no, clickedButton.Text);
-
-            foreach (Button button in linkbuttons.Controls.OfType<Button>().Where(b => b != clickedButton))
-                button.CssClass = "btn btn-link nav-link";
-        }
-
-        protected void addCourseButtons(string roll_no)
+        protected void addCourseButtons(string rollno)
         {
             conn.Open();
-            string query = "SELECT course_id from courses";
+            string query = "SELECT cc.CourseID, cc.CourseCode from courses cc " +
+                "join TakenBy tb on tb.CourseID = cc.CourseID " +
+                "join students std on tb.UserID = std.UserID " +
+                "where std.rollno = @roll";
             SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@roll", rollno);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                string courseId = reader["course_id"].ToString();
-                Button button = new Button();
-                button.ID = courseId;
-                button.Text = courseId;
-                button.CssClass = "btn btn-link nav-link";
-                button.Click += new EventHandler(fetchAttendance);
-                linkbuttons.Controls.Add(button);
+                string courseCode = reader["coursecode"].ToString();
+                string courseId = reader["courseid"].ToString();
+                Button courseBtn = new Button();
+                courseBtn.ID = courseId;
+                courseBtn.Text = courseCode;
+                courseBtn.CssClass = "btn btn-link nav-link";
+                courseBtn.Click += fetchMarksData;
+                courseButtons.Controls.Add(courseBtn);
             }
             reader.Close();
             conn.Close();
         }
 
-        protected void updateAttendance(string roll_no, string course)
+        protected void fetchMarksData(object sender, EventArgs e)
         {
-            DataTable data = loadAttendance(roll_no, course);
-            attendanceGrid.DataSource = data;
-            attendanceGrid.DataBind();
+            Button clickedButton = (Button)sender;
+            clickedButton.CssClass = "btn btn-secondary rounded-5";
+            Session["sel_course_id"] = clickedButton.ID;
+            DataTable data = loadAssessmentData("Assignment");
+            assignmentsGrid.DataSource = data;
+            assignmentsGrid.DataBind();
+            data.Clear();
+            data = loadAssessmentData("Quiz");
+            quizzesGrid.DataSource = data;
+            quizzesGrid.DataBind();
+            data.Clear();
+            data = loadAssessmentData("SessionalExam");
+            sessionalsGrid.DataSource = data;
+            sessionalsGrid.DataBind();
+            data.Clear();
+            data = loadAssessmentData("Project");
+            projectGrid.DataSource = data;
+            projectGrid.DataBind();
+            data.Clear();
+            data = loadAssessmentData("FinalExam");
+            finalGrid.DataSource = data;
+            finalGrid.DataBind();
+            data.Clear();
+            foreach (Button button in courseButtons.Controls.OfType<Button>().Where(b => b != clickedButton))
+                button.CssClass = "btn btn-link nav-link";
+        }
+
+        DataTable loadAssessmentData(string type)
+        {
+            conn.Open();
+            string query = "SELECT ass.* from Assessments ass " +
+                "join students std on std.studentid = ass.studentid " +
+                "where ass.courseid = @cid and std.rollno = @roll and ass.AssessmentType = @asst";
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@cid", (string)Session["sel_course_id"]);
+            command.Parameters.AddWithValue("@roll", (string)Session["roll_no"]);
+            command.Parameters.AddWithValue("@asst", type);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            conn.Close();
+            return dt;
+        }
+
+        protected void profileButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

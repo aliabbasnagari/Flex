@@ -1,0 +1,10 @@
+DegreeID,DegreeCode,Degree,FieldOfStudy
+1,BS(CS),Bachelors,Computer Sciences
+2,BS(SE),Bachelors,Software Engineering
+3,BS(DS),Bachelors,Data Sciences
+4,BS(CY),Bachelors,Cyber Security
+5,BS(AI),Bachelors,Artificial Intelligence
+6,BS(EE),Bachelors,Electrical Engineering
+7,BBA,Bachelors,Business Administration
+8,MS(DS),Masters,Data Sciences
+9,MS(AI),Masters,Artificial Intelligence

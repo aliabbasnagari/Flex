@@ -45,5 +45,34 @@ namespace Flex.Classes
                 }
             }
         }
+
+        public static float getGradeGPA(string grade)
+        {
+            if (grade == "A" || grade == "A+")
+                return 4.0f;
+            else if (grade == "A-")
+                return 3.7f;
+            else if (grade == "B+")
+                return 3.3f;
+            else if (grade == "B")
+                return 3.0f;
+            else if (grade == "B-")
+                return 2.7f;
+            else if (grade == "C+")
+                return 2.3f;
+            else if (grade == "C")
+                return 2.0f;
+            else if (grade == "C-")
+                return 1.7f;
+            else if (grade == "D+")
+                return 1.3f;
+            else if (grade == "D")
+                return 1.0f;
+            else if (grade == "D-")
+                return 0.7f;
+            else
+                return 0;
+
+        }
     }
 }

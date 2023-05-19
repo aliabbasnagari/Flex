@@ -18,13 +18,21 @@
             </div>
             <form class="login-form" id="loginForm" runat="server">
                 <div class="mb-3">
-                    <label for="userRoll">Roll No.</label>
+                    <label for="userEmail">NU Email</label>
                     <div class="input-group">
                         <span class="input-group-text">
                             <i class="fal fa-user"></i>
                         </span>
-                        <asp:TextBox ID="userRoll" runat="server" CssClass="form-control" placeholder="Roll Number i.e. (21I-xxxx)" aria-label="Roll number"></asp:TextBox>
+                        <asp:TextBox ID="userEmail" runat="server" CssClass="form-control" placeholder="Email i.e. xyz@nu.edu.pk" aria-label="Email"></asp:TextBox>
                     </div>
+                    <asp:RegularExpressionValidator
+                        ID="rollnoValidator"
+                        CssClass="text-warning"
+                        ControlToValidate="userEmail"
+                        ValidationExpression="^[a-z0-9.]+@nu\.edu\.pk$"
+                        ErrorMessage="Invalid Email."
+                        runat="server">
+                    </asp:RegularExpressionValidator>
                 </div>
                 <div class="mb-3">
                     <label for="userPassword">Password</label>

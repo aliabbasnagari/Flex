@@ -23,14 +23,14 @@
                         <span class="input-group-text">
                             <i class="fal fa-user"></i>
                         </span>
-                        <asp:TextBox ID="userEmail" runat="server" CssClass="form-control" placeholder="Email i.e. abc@nu.edu.pk" aria-label="Email"></asp:TextBox>
+                        <asp:TextBox ID="userEmail" runat="server" CssClass="form-control" placeholder="Email i.e. xyz@nu.edu.pk" aria-label="Email"></asp:TextBox>
                     </div>
                     <asp:RegularExpressionValidator
-                        ID="emailVaildator"
+                        ID="rollnoValidator"
                         CssClass="text-warning"
                         ControlToValidate="userEmail"
-                        ValidationExpression="^\w+@nu\.edu\.pk$"
-                        ErrorMessage="Invalid Email Address."
+                        ValidationExpression="^[a-z0-9.]+@nu\.edu\.pk$"
+                        ErrorMessage="Invalid Email."
                         runat="server">
                     </asp:RegularExpressionValidator>
                 </div>
@@ -52,10 +52,11 @@
                     We believe you are not a robot. ❤
                 </div>
                 <div class="h-5 w-100 bg-light rounded-5">
-                    <asp:Button ID="btnSignIn" runat="server" CssClass="btn btn-primary btn-sigin rounded-5" Text="Sign In" OnClick="btnSignIn_Click" />
-                    <asp:Button ID="btnGotoStudent" runat="server" CssClass="btn btn-light w-50 btn-sigin rounded-5" Text="Are you Student?" OnClick="btnGotoStudent_Click" />
+                    <asp:LinkButton ID="btnSignIn" runat="server" CssClass="btn btn-primary btn-sigin rounded-5" OnClick="btnSignIn_Click">
+                            <i class="fa fa-sign-in px-2"></i>Sign In
+                    </asp:LinkButton>
+                    <a class="btn btn-light w-50 btn-sigin rounded-5" href="/pages/students/login.aspx">Are you Student?</a>
                 </div>
-                <!-- <i class="fal fa-sign-in" style="margin-right: 10px;"></i> -->
                 <div class="position-absolute bottom-0 start-0">
                     <a class="nav-link m-5" href="/pages/academics/login.aspx">Goto Academics Panel</a>
                 </div>

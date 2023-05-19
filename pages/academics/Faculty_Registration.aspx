@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masters/Academics_Profile.Master" AutoEventWireup="true" CodeBehind="Faculty_Registration.aspx.cs" Inherits="Flex.pages.academics.Faculty_Registration" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="academicsHeadPlaceHolder" runat="server">
+    <style>
+        .btn-enroll {
+            width: 15rem;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="academicsContentPlaceHolder" runat="server">
     <ul class="mx-3 breadcrumb">
@@ -10,7 +15,7 @@
     <div class="container mt-2">
         <div class="card">
             <div class="card-header">
-                <h4>Student Registration Form</h4>
+                <h4>Faculty Registration Form</h4>
             </div>
             <div class="card-body text-start">
                 <form>
@@ -39,10 +44,12 @@
                             <label for="ftName" class="form-label">Father Name</label>
                             <asp:TextBox runat="server" ID="ftName" CssClass="form-control" Required="true"></asp:TextBox>
                         </div>
+                        <!--
                         <div class="flex-grow-1 mx-2">
                             <label for="guName" class="form-label">Guardian Name</label>
                             <asp:TextBox runat="server" ID="guName" CssClass="form-control" Required="true"></asp:TextBox>
                         </div>
+                        -->
                     </div>
                     <div class="mb-3 d-flex w-100">
                         <div class="flex-grow-1 mx-2">
@@ -94,8 +101,20 @@
 
                         </div>
                         <div class="flex-grow-1 mx-2">
-                            <label for="ddCourse" class="form-label">Course</label>
-                            <asp:DropDownList ID="ddCourse" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddCourse_Selected" AutoPostBack="true" required="true">
+                            <label for="ddCourse" class="form-label">Course 1</label>
+                            <asp:DropDownList ID="ddCourse1" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddCourse_Selected1" AutoPostBack="true" required="true">
+                                <asp:ListItem Text="Choose..." Value="" Disabled="true" Selected="true"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="flex-grow-1 mx-2">
+                            <label for="ddCourse" class="form-label">Course 2</label>
+                            <asp:DropDownList ID="ddCourse2" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddCourse_Selected2" AutoPostBack="true">
+                                <asp:ListItem Text="Choose..." Value="" Disabled="true" Selected="true"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="flex-grow-1 mx-2">
+                            <label for="ddCourse" class="form-label">Course 3</label>
+                            <asp:DropDownList ID="ddCourse3" runat="server" CssClass="form-select" AutoPostBack="true">
                                 <asp:ListItem Text="Choose..." Value="" Disabled="true" Selected="true"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
@@ -116,8 +135,8 @@
                             <asp:Button ID="btnGenerate" runat="server" CssClass="btn btn-secondary" OnClick="btnGenerate_Click" CausesValidation="false" Text="Generate" />
                         </div>
                     </div>
-                    <asp:LinkButton ID="btnEnroll" runat="server" CssClass="btn btn-success btn-lg rounded-5" OnClick="btnEnroll_Click">
-                        <i class="fa fa-check mx-5"></i>Enroll
+                    <asp:LinkButton ID="btnEnroll" runat="server" CssClass="btn btn-success btn-lg btn-enroll rounded-5" OnClick="btnEnroll_Click">
+                        <i class="fa fa-check mx-2"></i>Enroll
                     </asp:LinkButton>
                 </form>
             </div>

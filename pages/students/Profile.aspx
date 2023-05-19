@@ -71,29 +71,19 @@
             <table class="table bg-white text-start table-borderless table-layout-fixed">
                 <tbody>
                     <tr>
-                        <td style="width: 45%;">Address:</td>
-                        <td></td>
-                        <td style="width: 45%;">Address:</td>
+                        <td>Address:
+                            <asp:Label ID="lbAddress" CssClass="table-label" runat="server" Text="Label"></asp:Label>
+                        </td>
                     </tr>
                     <tr>
-                        <td style="width: 45%;">Home Phone:</td>
-                        <td></td>
-                        <td style="width: 45%;">Home Phone:</td>
+                        <td>City:
+                            <asp:Label ID="lbCity" CssClass="table-label" runat="server" Text="Label"></asp:Label>
+                        </td>
                     </tr>
                     <tr>
-                        <td style="width: 45%;">Postal Code:</td>
-                        <td></td>
-                        <td style="width: 45%;">Postal Code:</td>
-                    </tr>
-                    <tr>
-                        <td style="width: 45%;">City:</td>
-                        <td></td>
-                        <td style="width: 45%;">City:</td>
-                    </tr>
-                    <tr>
-                        <td style="width: 45%;">Country:</td>
-                        <td></td>
-                        <td style="width: 45%;">Country:</td>
+                        <td">Country:
+                            <asp:Label ID="lbCountry" CssClass="table-label" runat="server" Text="Label"></asp:Label>
+                        </td>
                     </tr>
                 </tbody>
             </table>

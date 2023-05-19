@@ -1,0 +1,56 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Faculty_Profile.master.cs" Inherits="Flex.masters.Faculty_Profile" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Flex | Faculty</title>
+    <link rel="stylesheet" type="text/css" href="~/assets/fontawesome/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/style/student_profile.css" />
+    <link rel="shortcut icon" href="~/assets/img/favicon.ico" />
+    <asp:ContentPlaceHolder ID="facultyHeadPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form class="d-flex w-100 h-100" id="sideNavForm" runat="server">
+        <div class="d-flex flex-column h-100 w-18">
+            <div class="d-flex flex-column m-3 p-3 text-center rounded-5 shadow h-100" style="background-color: aliceblue;">
+                <!-- Content goes here -->
+                <div class="profile-container d-flex flex-column align-items-center">
+                    <img src="/assets/img/profile-pic.png" class="prof-img rounded-circle" alt="" />
+                    <asp:Label ID="lbName" runat="server" Text="Label" CssClass="h2"></asp:Label>
+                    <asp:Label ID="lbDegRoll" runat="server" Text="Label" CssClass="h5"></asp:Label>
+                </div>
+                <ul id="studentOptions" class="sidebar-ul" runat="server">
+                    <li><a id="btnProfile" href="/pages/faculty/profile.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Home</a></li>
+                    <li><a id="btnAttend" href="/pages/faculty/attendance.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Attendance</a></li>
+                    <li><a id="btnAssess" href="/pages/faculty/assessment.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Assessments</a></li>
+                    <li><a id="btnWeight" href="/pages/faculty/weightage.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Set Weightage</a></li>
+                    <li><a id="btnCFeedback" href="/pages/faculty/feedback.aspx" class="btn btn-primary btn-lg btn-action rounded-5">See Feedback</a></li>
+                </ul>
+
+                <ul class="sidebar-ul mt-auto">
+                    <asp:LinkButton ID="btnSignOut" runat="server" CssClass="btn btn-danger btn-lg btn-action rounded-5" OnClick="btnSignOut_Click">
+                            <i class="fa fa-sign-out px-2"></i>Sign Out
+                    </asp:LinkButton>
+                </ul>
+                <!-- to -->
+            </div>
+        </div>
+        <div class="d-flex flex-grow-1" style="height: 100vh;">
+            <div class="d-flex flex-column m-3 p-3 text-center rounded-5 shadow position-relative" style="background-color: white; flex-grow: 1;">
+                <!-- Content goes here -->
+                <div class="overflow-auto">
+                    <asp:ContentPlaceHolder ID="facultyContentPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <!-- to -->
+            </div>
+        </div>
+    </form>
+
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="facultyScriptPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+</html>

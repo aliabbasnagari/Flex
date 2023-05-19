@@ -141,13 +141,31 @@ namespace Flex.pages.academics
         protected global::System.Web.UI.WebControls.DropDownList ddCampus;
 
         /// <summary>
-        /// ddCourse control.
+        /// ddCourse1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddCourse;
+        protected global::System.Web.UI.WebControls.DropDownList ddCourse1;
+
+        /// <summary>
+        /// ddCourse2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddCourse2;
+
+        /// <summary>
+        /// ddCourse3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddCourse3;
 
         /// <summary>
         /// ddSections control.

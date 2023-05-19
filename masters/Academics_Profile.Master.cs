@@ -13,21 +13,26 @@ namespace Flex.masters
     {
         SqlConnection conn = new SqlConnection("Data Source=anonymous\\SQLEXPRESS;Initial Catalog=FlexDB;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
-        {/*
-            string roll_no = (string)Session["roll_no"];
-            if (!string.IsNullOrEmpty(roll_no))
+        {
+            string numail = (string)Session["nuemail"];
+            if (!string.IsNullOrEmpty(numail))
             {
                 conn.Open();
                 SqlCommand cm;
-                string query = "SELECT Name, Degree FROM students WHERE RollNo = '" + EncryptionUtility.Decrypt(roll_no) + "';";
+                string query = "select concat(usr.firstname, ' ' ,usr.lastname) as Name, fc.Position from Academics fc " +
+                    "join users usr on usr.userid = fc.userid " +
+                    "where usr.nuemail= @nuemail";
+
+                //string query = "SELECT Name, Degree FROM students WHERE RollNo = '" + EncryptionUtility.Decrypt(roll_no) + "';";
                 cm = new SqlCommand(query, conn);
+                cm.Parameters.AddWithValue("@nuemail", numail);
                 SqlDataReader res = cm.ExecuteReader();
                 while (res.Read())
                 {
                     string uname = res["Name"].ToString();
-                    string udegree = res["Degree"].ToString();
+                    string position = res["Position"].ToString();
                     lbName.Text = uname;
-                    lbDegRoll.Text = EncryptionUtility.Decrypt(roll_no) + " - " + udegree;
+                    lbDegRoll.Text = position;
                 }
                 res.Close();
                 conn.Close();
@@ -36,12 +41,12 @@ namespace Flex.masters
             {
                 Response.Redirect("~/pages/academics/login.aspx"); // Redirect to the home page
             }
-                */
         }
 
         protected void btnSignOut_Click(object sender, EventArgs e)
         {
-
+            Session.Clear();
+            Response.Redirect("~/pages/academics/login.aspx"); // Redirect to the home page
         }
     }
 }

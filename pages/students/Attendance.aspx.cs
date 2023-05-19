@@ -16,10 +16,9 @@ namespace Flex.pages.students
         string roll_no;
         protected void Page_Load(object sender, EventArgs e)
         {
-            roll_no = EncryptionUtility.Decrypt((string)Session["roll_no"]);
-            if (!IsPostBack && !string.IsNullOrEmpty(roll_no))
-                updateAttendance(roll_no, "MT-1001");
-            addCourseButtons(roll_no);
+            roll_no = (string)Session["roll_no"];
+            if (!string.IsNullOrEmpty(roll_no))
+                addCourseButtons(roll_no);
 
         }
 
@@ -28,10 +27,12 @@ namespace Flex.pages.students
             if (!string.IsNullOrEmpty(roll_no) && !string.IsNullOrEmpty(course))
             {
                 conn.Open();
-                string query = "SELECT lecture_no as 'Lecture No', CONVERT(varchar(10), date, 101) as 'Date', duration as 'Duration', presence as 'Presence' from attendance WHERE course_id = @courseId AND rollno = @rollNo";
+                string query = "select att.LectureNo as 'Lecture No',  CONVERT(varchar(10), att.AttendanceDate, 101) as 'Date',  duration as 'Duration', presence as 'Presence'   from Attendance att " +
+                    "join Students st on st.StudentID = att.StudentID " +
+                    "where att.CourseID = @cid and st.RollNo = @roll";
                 SqlCommand command = new SqlCommand(query, conn);
-                command.Parameters.AddWithValue("@courseId", course);
-                command.Parameters.AddWithValue("@rollNo", roll_no);
+                command.Parameters.AddWithValue("@cid", course);
+                command.Parameters.AddWithValue("@roll", roll_no);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -44,29 +45,22 @@ namespace Flex.pages.students
             }
         }
 
-        protected void profileButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected float CalculatePresencePercentage(DataTable dt)
         {
-            int totalClasses = dt.Rows.Count;
-            int totalLectures = 0;
-            int totalAbsent = 0;
-
+            float totalFactor = 0;
+            float totalDuration = 0;
             foreach (DataRow row in dt.Rows)
             {
-                if (row["Presence"].ToString() == "L")
-                    totalLectures++;
+                float dur = float.Parse(row["duration"].ToString());
+                if (row["Presence"].ToString() == "P")
+                    totalFactor += (dur * 1);
+                else if (row["Presence"].ToString() == "L")
+                    totalFactor += (dur * 0.5f);
                 else if (row["Presence"].ToString() == "A")
-                    totalAbsent++;
+                    totalFactor += (dur * 0);
+                totalDuration += dur;
             }
-
-            float totalHours = totalClasses * 2;
-            float totalPresent = (totalClasses - totalLectures) * 2;
-            float percentage = (totalPresent / totalHours) * 100;
-            return percentage;
+            return (totalFactor / totalDuration) * 100;
         }
 
         protected void fetchAttendance(object sender, EventArgs e)
@@ -74,7 +68,7 @@ namespace Flex.pages.students
             Button clickedButton = (Button)sender;
             clickedButton.CssClass = "btn btn-secondary rounded-5";
 
-            updateAttendance(roll_no, clickedButton.Text);
+            updateAttendance(roll_no, clickedButton.ID);
 
             foreach (Button button in linkbuttons.Controls.OfType<Button>().Where(b => b != clickedButton))
                 button.CssClass = "btn btn-link nav-link";
@@ -83,21 +77,35 @@ namespace Flex.pages.students
         protected void addCourseButtons(string roll_no)
         {
             conn.Open();
-            string query = "SELECT course_id from courses";
+            string query = "SELECT cc.CourseID, cc.CourseCode from courses cc " +
+                "join TakenBy tb on tb.CourseID = cc.CourseID " +
+                "join Students st on tb.UserID = st.UserID " +
+                "where st.RollNo = @roll";
             SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@roll", roll_no);
             SqlDataReader reader = command.ExecuteReader();
+            int i = 0;
+            string init_id = "";
             while (reader.Read())
             {
-                string courseId = reader["course_id"].ToString();
+                string courseCode = reader["coursecode"].ToString();
+                string courseId = reader["courseid"].ToString();
                 Button button = new Button();
                 button.ID = courseId;
-                button.Text = courseId;
-                button.CssClass = "btn btn-link nav-link";
+                button.Text = courseCode;
+                if (i == 0)
+                {
+                    button.CssClass = "btn btn-secondary rounded-5";
+                    init_id = courseId;
+                    i++;
+                }
+                else button.CssClass = "btn btn-link nav-link";
                 button.Click += new EventHandler(fetchAttendance);
                 linkbuttons.Controls.Add(button);
             }
             reader.Close();
             conn.Close();
+            updateAttendance(roll_no, init_id);
         }
 
         protected void updateAttendance(string roll_no, string course)
@@ -107,10 +115,13 @@ namespace Flex.pages.students
             attendanceGrid.DataBind();
 
             float per = CalculatePresencePercentage(data);
+            Helper.alert(per.ToString(), this);
             attendanceProgress.Style["width"] = per.ToString() + "%";
             attendanceProgress.InnerHtml = per.ToString("F2") + "%";
             if (per < 85)
-                attendanceProgress.Attributes["class"] += " bg-danger";
+                attendanceProgress.Attributes["class"] = "progress-bar progress-bar-striped progress-bar-animated bg-danger";
+            else
+                attendanceProgress.Attributes["class"] = "progress-bar progress-bar-striped progress-bar-animated bg-success";
         }
     }
 }

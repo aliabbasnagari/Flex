@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -144,6 +145,10 @@ namespace Flex.pages.academics
             command.Parameters.AddWithValue("@admdate", DateTime.Now.ToString("yyyy-MM-dd"));
             command.Parameters.AddWithValue("@did", ddDegree.SelectedValue);
             command.Parameters.AddWithValue("@secid", ddSections.SelectedValue);
+            command.Parameters.AddWithValue("@op", "Insertion");
+            command.Parameters.AddWithValue("@uid2", (string)Session["a_uid"]);
+            command.Parameters.AddWithValue("@opdate", DateTime.Now.ToString("yyyy-MM-dd"));
+            command.Parameters.AddWithValue("@utype", "Academics");
             try
             {
                 command.CommandText = "INSERT INTO Users (UserID, FirstName, LastName, NUemail, Password, CampusID) " +
@@ -157,6 +162,9 @@ namespace Flex.pages.academics
                 command.ExecuteNonQuery();
                 command.CommandText = "Insert into UserSections(SectionID, UserID) " +
                     "VALUES (@secid, @uid); ";
+                command.ExecuteNonQuery();
+                command.CommandText = "INSERT INTO LOGS (Operation, UserID, OpDate, UserType) " +
+                    "VALUES (@op, @uid2, @opdate, @utype); ";
                 command.ExecuteNonQuery();
 
                 transaction.Commit();

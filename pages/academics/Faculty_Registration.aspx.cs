@@ -40,14 +40,14 @@ namespace Flex.pages.academics
             conn.Close();
         }
 
-        protected void loadCourseOptions()
+        protected void loadCourseOptions(DropDownList ddl, DropDownList ddlp, DropDownList ddlp2)
         {
             conn.Open();
-            ddCourse.Items.Clear();
-            ddCourse.Items.Add(new ListItem("Choose...", ""));
+            ddl.Items.Clear();
+            ddl.Items.Add(new ListItem("Choose...", ""));
             string query = "select C.CourseID, C.CourseCode from Courses C " +
                 "join OfferedForDegree OD on OD.CourseID = C.CourseID " +
-                "join CampusDegree CD on CD.Degree = OD.Degree " +
+                "join CampusDegree CD on CD.DegreeID = OD.DegreeID " +
                 "where CD.CampusID = @cid";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@cid", ddCampus.SelectedValue);
@@ -58,7 +58,8 @@ namespace Flex.pages.academics
                 {
                     string dcode = reader["CourseCode"].ToString();
                     string did = reader["CourseID"].ToString();
-                    ddCourse.Items.Add(new ListItem(dcode, did));
+                    if (ddlp == null || (ddlp.SelectedValue != did && (ddlp2 == null || ddlp2.SelectedValue != did && (ddlp2.SelectedValue != ddlp.SelectedValue))))
+                        ddl.Items.Add(new ListItem(dcode, did));
                 }
             }
             reader.Close();
@@ -70,11 +71,13 @@ namespace Flex.pages.academics
             conn.Open();
             ddSections.Items.Clear();
             ddSections.Items.Add(new ListItem("Choose...", ""));
-            string query = "select SectionID, SectionName from Sections s " +
-                "join OfferedForDegree OD on OD.DegreeID = s.DegreeID " +
-                " where s.AvailableSeats != 0 and OD.CourseID = @cid;";
+            string query = "SELECT * FROM Sections SC " +
+                "JOIN CampusDegree CD ON CD.DegreeID = SC.DegreeId " +
+                "JOIN OfferedForDegree OD ON OD.DegreeID = CD.DegreeID " +
+                "WHERE CD.CampusID = @cmpid AND OD.CourseID = @crsid;";
             SqlCommand command = new SqlCommand(query, conn);
-            command.Parameters.AddWithValue("@cid", ddCourse.SelectedValue);
+            command.Parameters.AddWithValue("@cmpid", ddCampus.SelectedValue);
+            command.Parameters.AddWithValue("@crsid", ddCourse1.SelectedValue);
             SqlDataReader reader = command.ExecuteReader();
             if (reader.HasRows)
             {
@@ -93,21 +96,30 @@ namespace Flex.pages.academics
         {
             string mail_prefix = (fName.Text + '.' + lName.Text).ToLower();
             string mail_postfix = "@nu.edu.pk";
-            while(ComQueries.NuMailExists(mail_prefix + mail_postfix))
+            while (ComQueries.NuMailExists(mail_prefix + mail_postfix))
             {
                 mail_prefix += ".v";
             }
             nuEmail.Text = mail_prefix + mail_postfix;
         }
 
-        protected void ddDegree_Selected(object sender, EventArgs e)
-        {
-            loadSectionOptions();
-        }
-
         protected void ddCampus_Selected(object sender, EventArgs e)
         {
-            loadCourseOptions();
+            loadCourseOptions(ddCourse1, null, null);
+            loadCourseOptions(ddCourse2, ddCourse1, null);
+            loadCourseOptions(ddCourse3, ddCourse2, ddCourse1);
+        }
+
+        protected void ddCourse_Selected1(object sender, EventArgs e)
+        {
+            loadSectionOptions();
+            loadCourseOptions(ddCourse2, ddCourse1, null);
+            loadCourseOptions(ddCourse3, ddCourse2, ddCourse1);
+        }
+
+        protected void ddCourse_Selected2(object sender, EventArgs e)
+        {
+            loadCourseOptions(ddCourse3, ddCourse2, ddCourse1);
         }
 
         protected void btnEnroll_Click(object sender, EventArgs e)
@@ -139,19 +151,54 @@ namespace Flex.pages.academics
             command.Parameters.AddWithValue("@fid", ComQueries.MaxFacultyID() + 1);
             command.Parameters.AddWithValue("@admdate", DateTime.Now.ToString("yyyy-MM-dd"));
             command.Parameters.AddWithValue("@secid", ddSections.SelectedValue);
+            command.Parameters.AddWithValue("@crsid1", ddCourse1.SelectedValue);
+            command.Parameters.AddWithValue("@crsid2", ddCourse1.SelectedValue);
+            command.Parameters.AddWithValue("@crsid3", ddCourse1.SelectedValue);
+            command.Parameters.AddWithValue("@op", "Insertion");
+            command.Parameters.AddWithValue("@uid2", (string)Session["a_uid"]);
+            command.Parameters.AddWithValue("@opdate", DateTime.Now.ToString("yyyy-MM-dd"));
+            command.Parameters.AddWithValue("@utype", "Academics");
             try
             {
                 command.CommandText = "INSERT INTO Users (UserID, FirstName, LastName, NUemail, Password, CampusID) " +
                             "VALUES (@uid, @fname, @lname, @nuemail, @password, @cid);";
                 command.ExecuteNonQuery();
+
                 command.CommandText = "INSERT INTO  UserInfo(InfoID, DOB, Gender, ContactNo, Cnic, Nationality, PersonalEmail, Address, City, Country, FatherName, GuardianName) " +
                     "VALUES (@uid, @dob, @gender, @contact, @cnic, @nationality, @email, @address, @city, @country, @ftname, @guname);";
                 command.ExecuteNonQuery();
+
                 command.CommandText = "INSERT INTO Faculty (FacultyID, UserID) " +
                     "VALUES (@fid, @uid); ";
                 command.ExecuteNonQuery();
+
                 command.CommandText = "Insert into UserSections(SectionID, UserID) " +
                     "VALUES (@secid, @uid); ";
+                command.ExecuteNonQuery();
+
+                if (!string.IsNullOrEmpty(ddCourse1.SelectedValue))
+                {
+                    command.CommandText = "Insert into TakenBy(CourseID, UserID) " +
+                        "VALUES (@crsid1, @uid); ";
+                    command.ExecuteNonQuery();
+                }
+
+                if (!string.IsNullOrEmpty(ddCourse1.SelectedValue))
+                {
+                    command.CommandText = "Insert into TakenBy(CourseID, UserID) " +
+                        "VALUES (@crsid2, @uid); ";
+                    command.ExecuteNonQuery();
+                }
+                if (!string.IsNullOrEmpty(ddCourse1.SelectedValue))
+                {
+                    command.CommandText = "Insert into TakenBy(CourseID, UserID) " +
+                        "VALUES (@crsid3, @uid); ";
+                    command.ExecuteNonQuery();
+                }
+
+
+                command.CommandText = "INSERT INTO LOGS (Operation, UserID, OpDate, UserType) " +
+                    "VALUES (@op, @uid2, @opdate, @utype); ";
                 command.ExecuteNonQuery();
 
                 transaction.Commit();
@@ -161,11 +208,13 @@ namespace Flex.pages.academics
             {
                 conn.Close();
                 Console.WriteLine("SqlException: " + ex.ToString());
+                Console.WriteLine("SqlException EXPAND: " + ex.Message.ToString());
             }
             catch (Exception ex)
             {
                 conn.Close();
                 Console.WriteLine("Exception: " + ex.ToString());
+                Console.WriteLine("Exception EXPAND: " + ex.Message.ToString());
             }
         }
     }

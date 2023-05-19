@@ -21,15 +21,18 @@ namespace Flex.pages.academics
 
         protected void signInButton_Click(object sender, EventArgs e)
         {
-            Session["nuemail"] = "johndoe@example.com"; // Save the username in session
-            Response.Redirect("~/pages/academics/profile.aspx"); // Redirect to the home page
+            if (loginAuth(userEmail.Text, userPassword.Text))
+            {
+                Session["nuemail"] = userEmail.Text; // Save the username in session
+                Response.Redirect("~/pages/academics/profile.aspx"); // Redirect to the home page
+            }
         }
 
         protected bool loginAuth(string rollnum, string password)
         {
             conn.Open();
             SqlCommand cm;
-            string query = "select * from users where roll_no = @Rollnum and password = @Password";
+            string query = "select * from users where nuemail = @Rollnum and password = @Password";
             cm = new SqlCommand(query, conn);
             cm.Parameters.AddWithValue("@Rollnum", rollnum);
             cm.Parameters.AddWithValue("@Password", password);
@@ -42,6 +45,10 @@ namespace Flex.pages.academics
             }
             else
             {
+                if (res.Read())
+                {
+                    Session["a_uid"] = res["UserID"].ToString();
+                }
                 cm.Dispose();
                 conn.Close();
                 return true;

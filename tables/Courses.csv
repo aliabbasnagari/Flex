@@ -1,0 +1,10 @@
+CourseID,CourseCode,CourseName,CreditHours,SemesterID,Year,CourseType
+1,CL2001,Data Structures - Lab,1,1,2021,Core
+2,CS1005,Discrete Structures,3,1,2021,Core
+3,CS2001,Data Structures,3,1,2021,Core
+4,EE2003,Computer Organization and Assembly Language,3,1,2021,Core
+5,EL2003,Computer Organization and Assembly Language - Lab,2,1,2021,Core
+6,MG1002,Marketing Management,3,1,2021,Elective
+7,MT1004,Linear Algebra,3,1,2021,Core
+8,CL2005,Database Systems - Lab,1,1,2021,Core
+9,CS2005,Database Systems,3,1,2021,Core

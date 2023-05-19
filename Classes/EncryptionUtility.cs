@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
@@ -12,28 +13,37 @@ namespace Flex.Classes
 
         public static string Encrypt(string plainText)
         {
-            StringBuilder cipherText = new StringBuilder(plainText.Length);
-
-            for (int i = 0; i < plainText.Length; i++)
+            if (!string.IsNullOrEmpty(plainText))
             {
-                char c = (char)(plainText[i] + KEYS[i % KEYS.Length]);
-                cipherText.Append(c);
-            }
+                StringBuilder cipherText = new StringBuilder(plainText.Length);
 
-            return cipherText.ToString();
+                for (int i = 0; i < plainText.Length; i++)
+                {
+                    char c = (char)(plainText[i] + KEYS[i % KEYS.Length]);
+                    cipherText.Append(c);
+                }
+
+                return cipherText.ToString();
+            }
+            return plainText;
         }
 
         public static string Decrypt(string cipherText)
         {
-            StringBuilder plainText = new StringBuilder(cipherText.Length);
-
-            for (int i = 0; i < cipherText.Length; i++)
+            if (!string.IsNullOrEmpty(cipherText))
             {
-                char c = (char)(cipherText[i] - KEYS[i % KEYS.Length]);
-                plainText.Append(c);
-            }
+                StringBuilder plainText = new StringBuilder(cipherText.Length);
 
-            return plainText.ToString();
+                for (int i = 0; i < cipherText.Length; i++)
+                {
+                    char c = (char)(cipherText[i] - KEYS[i % KEYS.Length]);
+                    plainText.Append(c);
+                }
+
+                return plainText.ToString();
+
+            }
+            return cipherText;
         }
     }
 }

@@ -1,0 +1,11 @@
+SectionID,SectionName,DegreeID,Capacity,AvailableSeats
+1,A,1,50,45
+2,B,1,50,45
+3,A,2,50,45
+4,A,3,50,45
+5,A,4,50,45
+6,A,5,50,45
+7,A,6,50,45
+8,A,7,50,45
+9,A,8,50,45
+10,A,9,50,45

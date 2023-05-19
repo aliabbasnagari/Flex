@@ -19,20 +19,20 @@ namespace Flex.masters
             {
                 conn.Open();
                 SqlCommand cm;
-                string query = "select concat(firstname, ' ' ,lastname) as name, nuemail from students stud " +
-                    "join users usr on usr.userid = stud.userid " +
-                    "where stud.rollno = @rollno";
+                string query = "select concat(usr.firstname, ' ' ,usr.lastname) as name, dg.degreecode from students std " +
+                    "join users usr on usr.userid = std.userid " +
+                    "join Degree dg on dg.degreeid = std.degreeid " +
+                    "where std.rollno = @rollno";
 
-                //string query = "SELECT Name, Degree FROM students WHERE RollNo = '" + EncryptionUtility.Decrypt(roll_no) + "';";
                 cm = new SqlCommand(query, conn);
-                cm.Parameters.AddWithValue("@rollno", EncryptionUtility.Decrypt(roll_no));
+                cm.Parameters.AddWithValue("@rollno", roll_no);
                 SqlDataReader res = cm.ExecuteReader();
                 while (res.Read())
                 {
                     string uname = res["name"].ToString();
-                    string udegree = res["nuemail"].ToString();
+                    string udegree = res["degreecode"].ToString();
                     lbName.Text = uname;
-                    lbDegRoll.Text = EncryptionUtility.Decrypt(roll_no) + " - " + udegree;
+                    lbDegRoll.Text = udegree + " - " + roll_no;
                 }
                 res.Close();
                 conn.Close();

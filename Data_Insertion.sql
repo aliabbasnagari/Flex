@@ -1,290 +1,173 @@
 use FLEXDB;
 
-INSERT INTO Campus (CampusID, CampusName, CampusLocation) VALUES 
-(1, 'Islamabad Campus', 'Islamabad'),
-(2, 'Karachi Campus', 'Karachi'),
-(3, 'Faisalabad Campus', 'Faisalabad'),
-(4, 'Lahore Campus', 'Lahore'),
-(5, 'Peshawar Campus', 'Peshawar');
+INSERT INTO Campus (CampusID, CampusName, CampusLocation) VALUES
+(1, 'University of ABC', 'New York'),
+(2, 'XYZ College', 'Los Angeles'),
+(3, 'ABC University', 'Chicago'),
+(4, 'City College', 'San Francisco'),
+(5, 'Global University', 'London');
 
-INSERT INTO Degree(DegreeID, DegreeCode, Degree, FieldOfStudy) VALUES
-(1, 'BS(CS)', 'Bachelors', 'Computer Sciences'),
-(2, 'BS(SE)', 'Bachelors', 'Software Engineering'),
-(3, 'BS(AI)', 'Bachelors', 'Artificial Intelligence'),
-(4, 'BS(DS)', 'Bachelors', 'Data Sciences'),
-(5, 'BS(CY)', 'Bachelors', 'Cyber Security'),
-(6, 'BS(EE)', 'Bachelors', 'Electrical Engineering'),
-(7, 'BBA',    'Bachelors', 'Business Administration'),
-(8, 'MS(CS)', 'Bachelors', 'Computer Sciences'),
-(9, 'MS(SE)', 'Bachelors', 'Software Engineering'),
-(10, 'MS(AI)', 'Bachelors', 'Artificial Intelligence'),
-(11, 'MS(DS)', 'Bachelors', 'Data Sciences'),
-(12, 'MS(CY)', 'Bachelors', 'Cyber Security');
+INSERT INTO Degree (DegreeID, DegreeCode, Degree, FieldOfStudy) VALUES
+(1, 'BSCS', 'Bachelor of Science in Computer Science', 'Computer Science'),
+(2, 'BBA', 'Bachelor of Business Administration', 'Business Administration'),
+(3, 'BSE', 'Bachelor of Software Engineering', 'Software Engineering'),
+(4, 'BA', 'Bachelor of Arts', 'Arts'),
+(5, 'BSEE', 'Bachelor of Science in Electrical Engineering', 'Electrical Engineering');
 
-INSERT INTO CampusDegree(DegreeID, CampusID) VALUES
+INSERT INTO CampusDegree (DegreeID, CampusID) VALUES 
 (1, 1),
-(2, 1),
-(3, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5);
+
+INSERT INTO Users (UserID, FirstName, LastName, NUemail, Password, CampusId) VALUES
+(1, 'John', 'Doe', 'johndoe@example.com', 'password123', 1),
+(2, 'Ali', 'Abbas', 'i212503@nu.edu.pk', 'pass456', 2),
+(3, 'Michael', 'Johnson', 'michaeljohnson@example.com', 'securepass', 3),
+(4, 'Emily', 'Brown', 'emilybrown@example.com', 'abc123', 4),
+(5, 'David', 'Davis', 'daviddavis@example.com', 'qwerty123', 5);
+
+INSERT INTO userInfo (InfoID, DOB, Gender, FatherName, GuardianName, ContactNo, Cnic, Nationality, PersonalEmail, Address, City, Country) VALUES 
+(1, '1990-05-15', 'Male', 'John Doe Sr.', 'John Doe Sr.', '+1234567890', '12345-6789012-3', 'American', 'johndoe_personal@example.com', '123 Main Street', 'New York', 'United States'),
+(2, '1992-09-22', 'Female', 'Robert Smith', 'Robert Smith', '+0987654321', '98765-4321098-7', 'British', 'janesmith_personal@example.com', '456 Park Avenue', 'London', 'United Kingdom'),
+(3, '1985-12-10', 'Male', 'Michael Johnson Sr.', 'Michael Johnson Sr.', '+9876543210', '87654-3210987-1', 'American', 'michaeljohnson_personal@example.com', '789 Elm Street', 'Chicago', 'United States'),
+(4, '1994-07-08', 'Female', 'David Brown Sr.', 'David Brown Sr.', '+7418529630', '76543-2109876-5', 'American', 'emilybrown_personal@example.com', '321 Oak Avenue', 'San Francisco', 'United States'),
+(5, '1991-03-20', 'Male', 'Daniel Davis Sr.', 'Daniel Davis Sr.', '+3698521470', '65432-1098765-4', 'British', 'daviddavis_personal@example.com', '654 Pine Street', 'London', 'United Kingdom');
+
+INSERT INTO Roles (RoleID, Role) VALUES
+(1, 'Student'),
+(2, 'Faculty'),
+(3, 'Admin');
+
+INSERT INTO UserRoles (UserID, RoleID) VALUES 
+(1, 1),
+(2, 2),
+(3, 2),
 (4, 1),
-(5, 1),
-(6, 1),
-(7, 1),
-(8, 1),
-(9, 1),
-(10, 1),
-(11, 1),
-(12, 1),
+(5, 3);
+
+
+INSERT INTO Academics (AcademicsId, UserID, Position) VALUES
+(1, 1, 'Assistant Professor');
+
+INSERT INTO Semesters (SemesterID, SemesterName, StartDate, EndDate) VALUES 
+(1, 'Fall 2021', '2021-09-01', '2021-12-31'),
+(2, 'Spring 2022', '2022-01-01', '2022-04-30'),
+(3, 'Summer 2022', '2022-05-01', '2022-08-31'),
+(4, 'Fall 2022', '2022-09-01', '2022-12-31'),
+(5, 'Spring 2023', '2023-01-01', '2023-04-30');
+
+INSERT INTO Students (StudentID, RollNo, UserID, AdmissionDate, DegreeID) VALUES 
+(1, '21I-2503', 2, '2021-09-01', 1),
+(2, '22I-0578', 3, '2021-09-01', 2);
+
+insert into StudentSemester (SemesterID, StudentID) VALUES 
+(1, 1),
+(1, 2);
+
+INSERT INTO Faculty (FacultyID, UserID, Position) VALUES
+(1, 4, 'Assistant Professor'),
+(2, 5, 'Associate Professor');
+
+INSERT INTO Sections (SectionID, SectionName, DegreeId, CAPACITY, AvailableSeats) VALUES
+(1, 'A', 1, 30, 30),
+(2, 'B', 1, 30, 20),
+(3, 'A', 2, 25, 25),
+(4, 'A', 3, 40, 40),
+(5, 'B', 3, 40, 30);
+
+INSERT INTO UserSections (SectionID, UserID) VALUES 
+(1, 2),
+(1, 3);
+
+INSERT INTO Courses (CourseID, CourseCode, CourseName, CreditHours, SemesterID, Year, CourseType) VALUES
+(1, 'CS101', 'Introduction to Computer Science', 3, 1, 2021, 'Core'),
+(2, 'MATH201', 'Calculus I', 4, 1, 2021, 'Core'),
+(3, 'CS201', 'Data Structures', 3, 2, 2022, 'Core'),
+(4, 'CS301', 'Database Management Systems', 3, 3, 2022, 'Core'),
+(5, 'CS401', 'Artificial Intelligence', 3, 4, 2023, 'Elective');
+
+insert into TakenBy (CourseID, UserID) Values
 (1, 2),
 (2, 2),
 (3, 2),
-(4, 2),
-(5, 2),
-(6, 2),
-(8, 2),
-(9, 2),
-(1, 3),
-(2, 3),
-(3, 3),
-(4, 3),
-(5, 3),
-(6, 3),
-(7, 3),
-(8, 3),
-(9, 3),
-(10, 3),
-(11, 3),
-(12, 3),
 (1, 4),
+(1, 5),
 (2, 4),
 (3, 4),
+(3, 5);
+
+INSERT INTO Prerequisites (CourseID, PreqID) VALUES
+(3, 1),
+(4, 3),
+(5, 3),
+(5, 4),
+(5, 2);
+
+INSERT INTO OfferedForDegree (CourseID, DegreeID) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
 (4, 4),
 (5, 4),
-(6, 4),
-(7, 4),
-(8, 4),
-(9, 4),
 (1, 5),
 (2, 5),
-(3, 5),
-(5, 5),
-(6, 5),
-(8, 5),
-(9, 5),
-(10, 5);
-
-
-INSERT INTO Users (UserID,FirstName, LastName, NUemail, Password, CampusID) VALUES
-(1,'Raza', 'Ahmed', 'raza.ahmed@nu.edu.pk', 'pass123', 1), --students
-(2,'Mohsin', 'Naqvi', 'mohsin.naqvi@nu.edu.pk', 'pass456', 1),
-(3,'Salar', 'Murtaza', 'salar.murtaza@nu.edu.pk', 'pass789', 2),
-(4,'Sarah', 'Johnson', 'sarah.johnson@nu.edu.pk', 'pass101', 3),
-(5,'Ahmed', 'Ali', 'ahmed.ali@nu.edu.pk', 'pass111', 4),
-(6,'Fatima', 'Raza', 'fatima.raza@nu.edu.pk', 'pass222', 5),
-(7,'Muhammad', 'Ibrahim', 'muhammad.ibrahim@nu.edu.pk', 'pass333', 1),
-(8,'Sana', 'Khan', 'sana.khan@nu.edu.pk', 'pass444', 2),
-(9,'Ali', 'Hussain', 'ali.hussain@nu.edu.pk', 'pass555', 3),
-(10,'Nimra', 'Ahmed', 'nimra.ahmed@nu.edu.pk', 'pass666', 4),
-(11,'Munir', 'Ahmad', 'munir.ahmad@nu.edu.pk', 'pass777', 5),
-(12,'Halis', 'Umar', 'halis.umar@nu.edu.pk', 'pass888', 1),
-(13,'Kamran', 'Hayat', 'kamran.hayat@nu.edu.pk', 'pass999', 2),
-(14,'Muhammad', 'Ahsan', 'muhammad.ahsan@nu.edu.pk', 'pass1234', 3),
-(15,'Sultan', 'haseeb', 'sultan.haseeb@nu.edu.pk', 'pass567', 4);
-
-
-INSERT INTO  UserInfo(InfoID, DOB, FatherName, GuardianName, Gender, ContactNo, Cnic, Nationality, PersonalEmail, Address, City, Country) VALUES
-(1,'1997-01-01','Ali Ahmed','Ali Ahmed','Male', '0333-1234567', '12345-6789123-1', 'Pakistani', 'raza.ahmed@gmail.com', '123 Main Street', 'Karachi', 'Pakistan'),
-(2, '1998-05-05','Usman Naqvi','Usman Naqvi', 'Male', '0333-2345678', '23456-7891234-2', 'Pakistani', 'mohsin.naqvi@gmail.com', '456 Second Street', 'Karachi', 'Pakistan'),
-(3,'1995-07-10','Hussain Murtaza','Hussain Murtaza','Male', '0333-3456789', '34567-8912345-3', 'Pakistani', 'salar.murtaza@gmail.com', '789 Third Street', 'Islamabad', 'Pakistan'),
-(4,'1996-09-15','Johnson Smith','Johnson Smith','Female', '0333-4567890', '45678-9123456-4', 'American', 'sarah.johnson@gmail.com', '101 Fourth Street', 'New York', 'USA'),
-(5,'1999-02-28','Ali Abbas','Ali Abbas','Male', '0333-5678901', '56789-1234567-5', 'Pakistani', 'ahmed.ali@gmail.com', '123 Fifth Street', 'Islamabad', 'Pakistan'),
-(6,'1997-03-20','Muhammad Raza','Muhammad Raza','Female', '0333-6789012', '67890-2345678-6', 'Pakistani', 'fatima.raza@gmail.com', '456 Sixth Street', 'Lahore', 'Pakistan'),
-(7,'1998-11-11','Ibrahim Ali','Javaid Ibrahim','Male', '03451234567', '12345-6789012-7', 'Pakistani', 'muhammad.ibrahim@gmail.com', '123 Main Street', 'Lahore', 'Pakistan'),
-(8,'1996-06-07','Ali Khan','Ali Khan','Female', '03458765432', '12345-8289012-8', 'Pakistani', 'sana.khan@hotmail.com', '456 Market Street', 'Lahore', 'Pakistan'),
-(9,'1995-09-28','Hussain Amjad','Bangash Hussain', 'Male', '03451234567', '12345-6789012-9', 'Pakistani', 'ali.hussain@yahoo.com', '789 Park Avenue', 'Islamabad', 'Pakistan'),
-(10,'1997-12-31','Ahmed Munir','Ahmed Munir', 'Female', '03458765432', '12345-6789012-1', 'Pakistani', 'nimra.ahmed@gmail.com', '1234 South Avenue', 'Islamabad', 'Pakistan'),
-(11,'1994-04-21','Ahmad Jan','Ahmad Jan', 'Male', '03451234567', '12345-6789012-4', 'American', 'munir.ahmad@yahoo.com', '4567 North Street', 'Lahore', 'Pakistan'),
-(12,'1993-08-12','Umar Kamran','Umar Kamran',  'Female', '03458765432', '12345-6789012-5', 'Mexican', 'halis.umar@hotmail.com', '890 East Street', 'Multan', 'Pakistan'),
-(13,'1996-06-20','Hayat Ali','Hayat Ali', 'Male', '03451234567', '12345-6789012-2', 'Canadian', 'kamran.hayat@gmail.com', '3456 West Avenue', 'Mian Chunnu', 'Pakistan'),
-(14,'1998-07-14','Ahsan Sufi','Ahsan Sufi', 'Female', '03458765432', '12345-6789012-6', 'Australian', 'muhammad.ahsan@yahoo.com', '7890 East Street', 'Bhakkar', 'Pakistan'),
-(15,'1997-09-28','Haseeb Muhammad','Jan Haseeb', 'Male', '0333-9876543', '12345-6789012-8', 'Pakistani', 'sultan.haseeb@gmail.com', '123 Main Street', 'Noshki', 'Pakistan');
-
--- Academics Table
-INSERT INTO Academics(AcademicsID ,UserID, Position) VALUES 
-(1, 1, 'Accountant'),
-(2, 2, 'Finance'),
-(3, 3, 'Admissions');
-
--- Students Table
-INSERT INTO Students (StudentId, RollNo, AdmissionDate, DegreeID, UserID, Semester) VALUES
-(1, '18I-0002', '2018-06-01', 2, 1, 1),
-(2, '18I-0001', '2018-06-01', 1, 2, 1),
-(3, '18I-0003', '2018-06-01', 3, 3, 1),
-(4, '19I-0001', '2019-06-01', 4, 4, 1),
-(5, '19I-0002', '2019-06-01', 5, 5, 1),
-(6, '19I-0003', '2019-06-01', 6, 6, 1),
-(7, '20I-0001', '2020-06-01', 7, 7, 1),
-(8, '20I-0002', '2020-06-01', 8, 8, 1),
-(9, '20I-0003', '2020-06-01', 9, 9, 1);
-
--- Faculty Table
-INSERT INTO Faculty (FacultyID, UserID) VALUES
-(1, 13),
-(2, 14),
-(3, 15);
-
-INSERT INTO Courses (CourseID, CourseCode, CourseName, CreditHours) 
-VALUES 
-(1, 'CS101', 'Programming Fundamentals', 4),
-(2, 'CS301', 'Data Structures and Algorithms', 4),
-(3, 'CS201', 'Object Oriented Languages', 4),
-(4, 'CS401', 'Operating Systems', 4),
-(5, 'CS402', 'Database Systems', 4),
-(6, 'CS403', 'Algorithms', 4),
-(7, 'CS501', 'Artificial Intelligence', 3),
-(8, 'CS602', 'Machine Learning', 3),
-(9, 'EE101', 'Introduction to Electrical Engineering', 3),
-(10, 'EE201', 'Circuit Analysis and Design', 4),
-(11, 'EE301', 'Computer Organization and Assembly Language', 4),
-(12, 'EE501', 'Digital Signal Processing', 4),
-(13, 'EE601', 'Power Systems', 3),
-(14, 'EE402', 'Control Systems', 3),
-(15, 'MT205','Probability and Statistics',3),
-(16, 'MG101','Fundamentals of Management',3),
-(17, 'MG102','Marketing Management',3);
-
-INSERT INTO Prerequisites (CourseID, PreqID) VALUES 
 (3, 1),
-(2, 3),
 (4, 2),
-(5, 2),
-(6, 2),
-(7,6),
-(9,8),
-(11,10),
-(13,12),
-(16,15)
-;
+(5, 5);
 
-INSERT INTO FacultyCourses(FcID, CourseID, FacultyID) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3),
-(4, 4, 1),
-(5, 5, 2),
-(6, 6, 3),
-(7, 7, 1),
-(8, 8, 2),
-(9, 9, 3),
-(10, 10, 3);
+INSERT INTO Attendance (AttendanceID, StudentID, CourseID, LectureNo, AttendanceDate, Duration, Presence) VALUES 
+(1, 1, 1, 1, '2023-01-01', 1.5, 'P'),
+(2, 1, 1, 2, '2023-01-08', 1.5, 'P'),
+(3, 1, 2, 3, '2023-01-02', 1.5, 'P'),
+(4, 1, 2, 4, '2023-01-09', 1.5, 'A'),
+(5, 1, 3, 5, '2023-01-03', 1.5, 'P'),
+(6, 1, 3, 6, '2023-01-10', 1.5, 'P'),
+(7, 1, 4, 7, '2023-01-04', 1.5, 'P'),
+(8, 1, 4, 8, '2023-01-11', 1.5, 'P'),
+(9, 1, 5, 9, '2023-01-05', 1.5, 'A'),
+(10, 2, 5, 1, '2023-01-12', 1.5, 'P'),
+(11, 2, 1, 2, '2023-01-01', 1.5, 'P'),
+(12, 2, 1, 3, '2023-01-08', 1.5, 'P'),
+(13, 2, 2, 4, '2023-01-02', 1.5, 'P'),
+(14, 2, 2, 5, '2023-01-09', 1.5, 'A'),
+(15, 2, 3, 6, '2023-01-03', 1.5, 'P'),
+(16, 2, 3, 7, '2023-01-10', 1.5, 'P'),
+(17, 2, 4, 8, '2023-01-11', 1.5, 'P'),
+(18, 2, 4, 9, '2023-01-12', 1.5, 'P'),
+(19, 2, 5, 10, '2023-02-09', 1.5, 'P'),
+(20, 2, 5, 11, '2023-02-10', 1.5, 'A');
 
-INSERT INTO Sections (SectionID, SectionName, DegreeId, CAPACITY, AvailableSeats) VALUES
-(1, 'A', 1, 50, 50),
-(2, 'B', 1, 40, 40),
-(3, 'C', 1, 30, 30),
-(4, 'D', 1, 35, 35),
-(5, 'A', 2, 50, 50),
-(6, 'B', 2, 40, 40),
-(7, 'C', 2, 30, 30),
-(8, 'D', 2, 35, 35),
-(9, 'A', 3, 50, 50),
-(10, 'B', 3, 40, 40),
-(11, 'C', 3, 30, 30),
-(12, 'D', 3, 35, 35),
-(13, 'A', 4, 50, 50),
-(14, 'B', 4, 40, 40),
-(15, 'C', 4, 30, 30),
-(16, 'D', 4, 35, 35),
-(17, 'A', 5, 50, 50),
-(18, 'B', 5, 40, 40),
-(19, 'C', 5, 30, 30),
-(20, 'D', 5, 35, 35),
-(21, 'A', 6, 50, 50),
-(22, 'B', 6, 40, 40),
-(23, 'C', 6, 30, 30),
-(24, 'D', 6, 35, 35),
-(25, 'A', 7, 50, 50),
-(26, 'B', 7, 40, 40),
-(27, 'C', 7, 30, 30),
-(28, 'D', 7, 35, 35),
-(29, 'A', 8, 50, 50),
-(30, 'B', 8, 40, 40),
-(31,'C', 8, 30, 30),
-(32,'D', 8, 35, 35),
-(33,'A', 9, 50, 50),
-(34,'B', 9, 40, 40),
-(35,'C', 9, 30, 30),
-(36,'D', 9, 35, 35),
-(37,'A', 10, 50, 50),
-(38,'B', 10, 40, 40),
-(39,'C', 10, 30, 30),
-(41, 'D', 10, 35, 35),
-(42, 'A', 11, 50, 50),
-(43, 'B', 11, 40, 40),
-(44, 'C', 11, 30, 30),
-(45, 'D', 11, 35, 35),
-(46, 'A', 12, 50, 50),
-(47, 'B', 12, 40, 40),
-(48, 'C', 12, 30, 30),
-(49, 'D', 12, 35, 35);
+INSERT INTO Assessments (AssessmentID, AssessmentNo, CourseID, StudentID, AssessmentType, TotalMarks, Marks) VALUES 
+(1, 1, 1, 1, 'Assignment', 50, 45),
+(2, 2, 1, 1, 'Quiz', 20, 18),
+(3, 1, 2, 1, 'Assignment', 50, 42),
+(4, 2, 2, 2, 'Quiz', 20, 19),
+(5, 1, 3, 2, 'Assignment', 50, 48),
+(6, 2, 3, 2, 'Quiz', 20, 18);
 
-INSERT INTO CourseOfferings (CourseID, Semester, Year, CourseType) VALUES 
-(1, 1, 2018, 'Core'),
-(1, 1, 2019, 'Core'),
-(1, 1, 2020, 'Core'),
-(1, 1, 2021, 'Core'),
-(1, 1, 2022, 'Core'),
-(2, 3, 2018, 'Core'),
-(2, 3, 2019, 'Core'),
-(2, 3, 2020, 'Core'),
-(2, 3, 2021, 'Core'),
-(2, 3, 2022, 'Core'),
-(6, 2, 2022, 'Core'),
-(7, 1, 2022, 'Core'),
-(8, 2, 2022, 'Core'),
-(9, 1, 2022, 'Core'),
-(10, 2, 2022, 'Core');
+INSERT INTO WeightageDistribution (CourseID, AssignmentW, QuizW, Sessional1W, Sessional2W, ProjectW, FinalW) VALUES
+(1, 30, 20, 20, 5, 5, 20),
+(2, 25, 15, 30, 5, 5, 20),
+(3, 30, 20, 20, 5, 5, 20);
 
-INSERT INTO UserCourses (UserID, CourseID , Semester) VALUES
-(1, 1, 1),
-(2, 2, 1),
-(4, 3, 1),
-(4, 4, 1),
-(5, 5, 1),
-(6, 6, 1),
-(7, 7, 1),
-(8, 8, 1),
-(9, 9, 1),
-(10, 10, 1),
-(11, 1, 1),
-(12, 2, 1),
-(13, 3, 1),
-(14, 4, 1),
-(15, 5, 1);
+INSERT INTO Transcript (TranscriptID, StudentID, SemesterID, SemesterGPA) VALUES
+(1, 1, 1, 3.75),
+(2, 1, 1, 3.6),
+(3, 1, 2, 3.9),
+(4, 2, 2, 3.8),
+(5, 2, 3, 3.7);
 
-INSERT INTO Attendance (AttendanceID, UserID, CourseID, AttendanceDate, Duration, Presence) VALUES 
-(1, 1, 1, '2023-05-01', 1.5, 'P'),
-(2, 1, 1, '2023-05-02', 1.5, 'P'),
-(3, 1, 1, '2023-05-03', 1.5, 'P'),
-(4, 1, 1, '2023-05-04', 1.5, 'P'),
-(5, 1, 1, '2023-05-05', 1.5, 'A'),
-(6, 1, 1, '2023-05-06', 1.5, 'P'),
-(7, 1, 1, '2023-05-07', 1.5, 'P'),
-(8, 1, 1, '2023-05-08', 1.5, 'P'),
-(9, 1, 1, '2023-05-09', 1.5, 'L'),
-(10, 2, 1, '2023-05-01', 1.5, 'P'),
-(11, 3, 1, '2023-05-01', 1.5, 'A'),
-(12, 4, 1, '2023-05-01', 1.5, 'P'),
-(13, 5, 2, '2023-05-01', 1.5, 'L'),
-(14, 6, 2, '2023-05-01', 1.5, 'P'),
-(15, 7, 2, '2023-05-01', 1.5, 'L'),
-(16, 8, 2, '2023-05-01', 1.5, 'P');
-
-INSERT INTO Assessments (AssessmentID, AssessmentNo, CourseID, UserID, AssessmentType, TotalMarks, Marks) VALUES 
-(1, 1, 1, 1, 'Assignment', 50, 40),
-(2, 1, 1, 1, 'Quiz', 20, 18),
-(3, 1, 1, 1, 'SessionalExam', 100, 75),
-(4, 1, 1, 1, 'Project', 200, 160),
-(5, 1, 1, 1, 'FinalExam', 150, 135),
-(6, 2, 2, 1, 'Assignment', 50, 45),
-(7, 2, 2, 1, 'Quiz', 20, 20),
-(8, 2, 2, 1, 'SessionalExam', 100, 80);
+INSERT INTO TranscriptDetails (TranscriptID, CourseID, Grade) VALUES
+(1, 1, 'A'),
+(1, 2, 'A-'),
+(1, 3, 'B+'),
+(2, 1, 'A'),
+(2, 2, 'B'),
+(2, 3, 'B+'),
+(3, 4, 'A+'),
+(3, 5, 'A'),
+(4, 4, 'A'),
+(4, 5, 'A-'),
+(5, 1, 'B+');

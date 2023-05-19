@@ -28,7 +28,6 @@
                     <li><a id="btnCReg" href="/pages/students/cregistration.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Course Registration</a></li>
                     <li><a id="btnTrans" href="/pages/students/transcript.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Transcript</a></li>
                     <li><a id="btnCFeedback" href="/pages/students/course_feedback.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Course Feedback</a></li>
-                    <li><a id="btnDetails" href="/pages/students/details.aspx" class="btn btn-primary btn-lg btn-action rounded-5">Details</a></li>
                 </ul>
 
                 <ul class="sidebar-ul mt-auto">
